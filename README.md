@@ -1,7 +1,7 @@
 # ThreeJS-export-OBJ
 OBJ exporter for [three.js](https://github.com/mrdoob/three.js)
 
-
+For a STL exporter see https://github.com/Doodle3D/ThreeJS-export-STL
 
 # Example
 
@@ -16,10 +16,9 @@ const mesh = new THREE.Mesh(geometry, material);
 
 mesh.position.y = 0.5;
 
-const buffer = exportOBJ.fromMesh(mesh);
-const blob = new Blob([buffer], { type: exportOBJ.mimeType });
-
-saveAs(blob, 'cube.obj');
+const buffer = exportOBJ.fromMesh(mesh).then(blob => {
+  saveAs(blob, 'cube.obj');  
+});
 ```
 
 # Installation
@@ -38,7 +37,7 @@ Include the library.
 import * as exportOBJ from 'Doodle3D/ThreeJS-export-OBJ';
 ```
 
-### Using NPM (CommonJS module)
+### Using NPM (CommonJS module) IS NOT YET PUBLISHED ON NPM
 
 Install the library.
 
@@ -57,23 +56,15 @@ const exportOBJ = require('threejs-export-obj');
 **exportOBJ.fromMesh**
 
 ```javascript
-data: String || Buffer = exportOBJ.fromMesh( mesh: THREE.Mesh, [ binary: Boolean = true ] )
+data: Buffer = async exportOBJ.fromMesh( mesh: THREE.Mesh )
 ```
 
-Creates a .OBJ from `THREE.Mesh`. When binary is set to `true` result will be a `Buffer` Object, when set to false result will be an ASCII string. The transformation on the `THREE.Mesh` will be applied to the OBJ geometry.
+Creates a .ZIP from `THREE.Mesh`. The .ZIP contains a `.obj` file and a `.mtl` file. The transformation on the `THREE.Mesh` will be applied to the OBJ geometry.
 
 **exportOBJ.fromGeometry**
 
 ```javascript
-data: String || Buffer = exportOBJ.fromGeometry( geometry: THREE.Geometry || THREE.BufferGeometry, [ matrix: THREE.Matrix4, binary: Boolean = true ] )
+data: Buffer = async exportOBJ.fromGeometry( geometry: THREE.Geometry || THREE.BufferGeometry, [ matrix: THREE.Matrix4, material: THREE.Material ] )
 ```
 
-Creates a .OBJ from `THREE.Geometry`. When binary is set to `true` result will be a `Buffer` Object, when set to false result will be an ASCII string. The transformation from the optional `matrix` argument will be applied to the OBJ geometry.
-
-**exportOBJ.mimeType**
-
-```javascript
-mimeType: String = exportOBJ.mimeType
-```
-
-A constant with the mime type of OBJ (`MIMETYPE`).
+Creates a .ZIP from `THREE.Geometry`. The .ZIP contains a `.obj` file and optionally a `.mtl` file. The transformation from the optional `matrix` argument will be applied to the geometry.
