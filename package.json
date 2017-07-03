@@ -1,7 +1,7 @@
 {
-  "name": "threejs-export-stl",
+  "name": "threejs-export-obj",
   "version": "0.0.1",
-  "description": "ThreeJS STL Exporter",
+  "description": "ThreeJS OBJ Exporter",
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "npm run build",
