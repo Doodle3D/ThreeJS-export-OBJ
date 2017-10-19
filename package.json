@@ -1,6 +1,6 @@
 {
   "name": "@doodle3d/threejs-export-obj",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ThreeJS OBJ Exporter",
   "main": "lib/index.js",
   "scripts": {
