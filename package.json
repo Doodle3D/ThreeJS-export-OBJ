@@ -1,35 +1,34 @@
 {
   "name": "@doodle3d/threejs-export-obj",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ThreeJS OBJ Exporter",
   "main": "lib/index.js",
+  "module": "module/index.js",
+  "esnext": "src/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "babel src --out-dir lib"
+    "build": "npm run build:main && npm run build:module ",
+    "build:main": "BABEL_ENV=main babel src -s -d lib",
+    "build:module": "BABEL_ENV=module babel src -s -d module"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
-  "format": "esm",
   "directories": {
     "lib": "src"
   },
   "keywords": [
     "three",
     "threejs",
-    "stl",
+    "obj",
     "export"
   ],
   "author": "casper@doodle3d",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.5.1",
-    "babel-core": "^6.5.2",
-    "babel-preset-es2015": "^6.5.0"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0"
   },
   "dependencies": {
-    "jszip": "^3.1.4"
+    "babel-preset-env": "^1.6.1",
+    "jszip": "^3.1.4",
+    "three": "^0.87.1"
   }
 }

@@ -1,4 +1,5 @@
 import JSZip from 'jszip';
+import { Geometry } from 'three';
 
 export const mimeType = 'text/plain';
 
@@ -84,15 +85,15 @@ function materialToData(material) {
 }
 
 export function fromGeometry(geometry, matrix, material) {
-  if (geometry.type === 'BufferGeometry') {
-    geometry = new THREE.Geometry().fromBufferGeometry(geometry);
-  } else if (geometry.type === 'Geometry') {
+  if (geometry.isBufferGeometry) {
+    geometry = new Geometry().fromBufferGeometry(geometry);
+  } else if (geometry.isGeometry) {
     geometry = geometry.clone();
   } else {
     throw new Error('Geometry is not an instance of BufferGeometry or Geometry');
   }
 
-  if (matrix) {
+  if (matrix && matrix.isMatrix4) {
     geometry.applyMatrix(matrix);
   }
 
