@@ -24,10 +24,10 @@ const geometry = new THREE.Geometry();
 geometry.merge(geometry1, new THREE.Matrix4().setPosition(new THREE.Vector3(1.5, 0, 0)), 0);
 geometry.merge(geometry2, new THREE.Matrix4().setPosition(new THREE.Vector3(-1.5, 0, 0)), 1);
 
-const material = new THREE.MultiMaterial([
+const material = [
   new THREE.MeshBasicMaterial({ color: 0xff0000 }),
   new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-]);
+];
 const mesh = new THREE.Mesh(geometry, material);
 
 scene.add(mesh);
