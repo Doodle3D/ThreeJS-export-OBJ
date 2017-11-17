@@ -1,8 +1,13 @@
 import * as THREE from 'three';
 import { saveAs } from 'file-saver';
-import { fromMesh, mimeType } from 'src/index.js';
+import { fromMesh, mimeType } from '../src/index.js';
 
-const canvas = document.getElementById('canvas');
+const canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+
+const download = document.createElement('button');
+download.innerHTML = 'Download';
+document.body.appendChild(download);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
@@ -43,7 +48,6 @@ mesh.position.y = 0.5;
   renderer.render(scene, camera);
 })();
 
-const download = document.getElementById('download');
 download.addEventListener('click', () => {
   fromMesh(mesh).then(zip => saveAs(zip, 'cube.zip'));
 });
