@@ -42,7 +42,7 @@ function geometryToData(geometry, material) {
     const face = faces[i];
 
     if (material && face.materialIndex !== currentMaterial) {
-      const mtl = material.isMultiMaterial ? material.materials[face.materialIndex] : material;
+      const mtl = material instanceof Array ? material[face.materialIndex] : material;
 
       output += `usemtl ${(mtl.name !== '') ? mtl.name : `material ${mtl.id}`}\n`;
 
@@ -62,8 +62,8 @@ function geometryToData(geometry, material) {
 function materialToData(material) {
   let output = '';
 
-  if (material.isMultiMaterial) {
-    for (const mtl of material.materials) {
+  if (material instanceof Array) {
+    for (const mtl of material) {
       output += materialToData(mtl);
     }
   } else {
