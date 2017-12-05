@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { Geometry } from 'three';
+import { Geometry } from 'three/src/core/Geometry';
 
 export const mimeType = 'text/plain';
 
