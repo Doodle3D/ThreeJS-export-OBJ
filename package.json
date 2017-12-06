@@ -1,6 +1,6 @@
 {
   "name": "@doodle3d/threejs-export-obj",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ThreeJS OBJ Exporter",
   "main": "lib/index.js",
   "module": "module/index.js",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "jszip": "^3.1.4",
-    "three": "^0.83.0"
+    "three": "^0.88.0"
   },
   "devDependencies": {
     "file-saver": "^1.3.3",
